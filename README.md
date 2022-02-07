@@ -1,3 +1,3 @@
 # f8prog
 
-A simple tool to reprogram the MAX FALCON-8 macropad
+A tool to programm the MAX FALCON-8 macropad written in C
