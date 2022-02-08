@@ -1,5 +1,10 @@
+# exclude project binary
+f8prog
+
+# exclude project dirs
 build/
 firmware/
+.ccls-cache/
 
 # ---> C
 # Prerequisites
