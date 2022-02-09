@@ -4,12 +4,13 @@
 
 #include "../include/change_key.h"
 #include "../include/firmware_handling.h"
+#include "../include/keycodes.h"
 
 int main (int argc, char *argv[])
 {
     fbuffer_t* p_fb = get_firmware_buffer(argv[1]);
 
-    set_key_value(p_fb->buffer, KEY8, 0x1E);
+    set_key_value(p_fb->buffer, F8_KEY8, KEY_a_A);
 
     /* for debugging -> print content of buffer to terminal */
     /*
@@ -17,9 +18,9 @@ int main (int argc, char *argv[])
         putc(isprint(fb->buffer[i]) ? fb->buffer[i] : '.', stdout);
     }
     */
-    
+   
+    /* Temporary solution to renaming the input file */
     char str[50];
-
     sprintf(str, "new_%s", argv[1]);
 
     write_firmware_buffer(str, p_fb);

@@ -1,14 +1,14 @@
 /* changeKey.h */
 
 /* Define for key offsets */
-#define KEY1 0x00005149
-#define KEY2 0x00005179
-#define KEY3 0x00005181
-#define KEY4 0x00005189
-#define KEY5 0x00005190
-#define KEY6 0x00005182
-#define KEY7 0x0000517a
-#define KEY8 0x0000514a
+#define F8_KEY1 0x00005149
+#define F8_KEY2 0x00005179
+#define F8_KEY3 0x00005181
+#define F8_KEY4 0x00005189
+#define F8_KEY5 0x00005190
+#define F8_KEY6 0x00005182
+#define F8_KEY7 0x0000517a
+#define F8_KEY8 0x0000514a
 
 /* Define for prog1-8 offset */
 #define PROG1_OFFSET 0x0000539C
