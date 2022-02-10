@@ -1,6 +1,6 @@
 ## Compiler settings
 CC			= cc
-CFLAGS  	= -Wall
+CFLAGS  	= -Wall -Werror -g -std=c99
 LDFLAGS 	=
 
 ## Project settings
