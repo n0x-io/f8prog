@@ -1,7 +1,30 @@
 /* keycodes taken from https://usb.org/sites/default/files/hut1_22.pdf 
  * See also: https://github.com/benblazak/ergodox-firmware/blob/master/src/lib/usb/usage-page/keyboard.h 
- * */
+ */
 
+#ifndef KEYCODES_H_
+#define KEYCODES_H_
+
+/* THESE ARE THE AVALIABLE KEYS FOR THE "MOD_KEYS" PARAMETER */
+#define MODKEY_LCTR                 0x01
+#define MODKEY_LSHI                 0x02
+#define MODKEY_LALT                 0x03
+#define MODKEY_LWIN                 0x04
+#define MODKEY_RCTR                 0x05
+#define MODKEY_RSHI                 0x06
+#define MODKEY_RALT                 0x07
+#define MODKEY_RWIN                 0x08
+#define MODKEY_RWIN_RSHI            0x09
+#define MODKEY_RWIN_RCTR            0x0A
+#define MODKEY_RWIN_RALT            0x0B
+#define MODKEY_RWIN_RCTR_RSHI       0x0C
+#define MODKEY_RCTR_RALT            0x0D
+#define MODKEY_RCTR_RSHI            0x0E
+#define MODKEY_RALT_RSHI            0x0F
+#define MODKEY_RALT_RCTR_RSHI       0x10
+
+
+/* THESE ARE THE AVAIRABLE KEYS FOR THE "KEYS" PARAMETER */
 #define KEY_ErrorRollOver           0x01
 #define KEY_POSTFail                0x02
 #define KEY_ErrorUndefined          0x03
@@ -84,7 +107,6 @@
 #define KEY_LeftArrow               0x50
 #define KEY_DownArrow               0x51
 #define KEY_UpArrow                 0x52
-
 #define KEYPAD_NumLock_Clear        0x53
 #define KEYPAD_Slash                0x54
 #define KEYPAD_Asterisk             0x55
@@ -102,13 +124,10 @@
 #define KEYPAD_9_PageUp             0x61
 #define KEYPAD_0_Insert             0x62
 #define KEYPAD_Period_Delete        0x63
-
 #define KEY_NonUS_Backslash_Pipe    0x64
 #define KEY_Application             0x65
 #define KEY_Power                   0x66
-
 #define KEYPAD_Equal                0x67
-
 #define KEY_F13                     0x68
 #define KEY_F14                     0x69
 #define KEY_F15                     0x6A
@@ -138,10 +157,8 @@
 #define KEY_LockingCapsLock         0x82
 #define KEY_LockingNumLock          0x83
 #define KEY_LockingScrollLock       0x84
-
 #define KEYPAD_Comma                0x85
 #define KEYPAD_EqualSign            0x86
-
 #define KEY_International1          0x87
 #define KEY_International2          0x88
 #define KEY_International3          0x89
@@ -175,17 +192,14 @@
 //      (Reserved)            0xA5..0xAF
 #define KEYPAD_00                   0xB0
 #define KEYPAD_000                  0xB1
-
 #define KEY_ThousandsSeparator      0xB2
 #define KEY_DecimalSeparator        0xB3
 #define KEY_CurrencyUnit            0xB4
 #define KEY_CurrencySubunit         0xB5
-
 #define KEYPAD_LeftParenthesis      0xB6
 #define KEYPAD_RightParenthesis     0xB7
 #define KEYPAD_LeftBrace            0xB8
 #define KEYPAD_RightBrace           0xB9
-
 #define KEYPAD_Tab                  0xBA
 #define KEYPAD_Backspace            0xBB
 #define KEYPAD_A                    0xBC
@@ -231,3 +245,5 @@
 #define KEY_RightShift              0xE5
 #define KEY_RightAlt                0xE6
 #define KEY_RightGUI                0xE7
+
+#endif /* KEYCODES_H_ */

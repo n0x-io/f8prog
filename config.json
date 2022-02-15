@@ -1,0 +1,21 @@
+{
+    "macros": [
+        {
+            "macro_no": 1,
+            "actions": [
+                {
+                    "mod_keys": "",
+                    "delay": 0.0,
+                    "keys": [
+                        "KEY_a_A",
+                        "KEY_b_B",
+                        "KEY_c_C",
+                        "KEY_d_D",
+                        "KEY_e_E",
+                        "KEY_f_F"
+                    ]
+                }
+            ]
+        }
+    ]
+}

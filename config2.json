@@ -1,0 +1,44 @@
+{
+    "macros": [
+        {
+            "macro_no": 1,
+            "actions": [
+                {
+                    "mod_keys": "",
+                    "delay":    0.0,
+                    "keys":  ["a", "b", "c", "d", "e", "f"]
+                },
+                {
+                    "mod_keys": "",
+                    "delay":    0.0,
+                    "keys":  ["1", "2", "3", "4", "5", "6"]
+                },
+                {
+                    "mod_keys": "",
+                    "delay":    0.0,
+                    "keys":  ["!", "\"", "§", "$", "%", "&"]
+                },
+                {
+                    "mod_keys": "",
+                    "delay":    0.0,
+                    "keys":  ["Z", "Y", "X", "W", "V", "U"]
+                }
+            ]
+        },
+        {
+            "macro_no": 2,
+            "actions": [
+                {
+                    "mod_keys": "",
+                    "delay":    0.0,
+                    "keys":  ["a"]
+                },
+                {
+                    "mod_keys": "",
+                    "delay":    0.0,
+                    "keys":  ["1"]
+                }
+            ]
+        }
+    ]
+}
