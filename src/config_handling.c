@@ -1,5 +1,6 @@
 #include "../include/config_handling.h"
 
+#include "../include/defines.h"
 #include "../include/keycodes_conv.h"
 
 #include <cjson/cJSON.h>
@@ -15,16 +16,35 @@
 #define JO_DELAY "delay"
 #define JO_KEYS "keys"
 
+enum MacroNumber {
+    MACRO1 = 1,
+    MACRO2,
+    MACRO3,
+    MACRO4,
+    MACRO5,
+    MACRO6,
+    MACRO7,
+    MACRO8
+};
+
 /* method declarations */
-char *read_in_config(char *conf_name);
+char *read_in_config(const char *conf_name);
 
-prog_actionP *
-get_config(char *conf_name) {
+f8_macroP *
+get_f8_macros(char *conf_name) {
 
-    const cJSON *macros = NULL;
+    /* reserve space for up to 8 macros */
+    f8_macroP *return_macros = malloc(sizeof(return_macros) * 8);
+
+    for (int i = 0; i < sizeof(return_macros); i++) {
+        f8_macroP pm     = calloc(1, sizeof(*pm));
+        return_macros[i] = pm;
+    }
+
+    cJSON       *macros = NULL;
     const cJSON *macro  = NULL;
 
-    /* parse the read in config file */
+    /* pmarse the read in config file */
     cJSON       *config_json = cJSON_Parse(read_in_config(conf_name));
     if (config_json == NULL) {
         const char *error_ptr = cJSON_GetErrorPtr();
@@ -34,48 +54,105 @@ get_config(char *conf_name) {
         exit(EXIT_FAILURE);
     }
 
-    // READ IN VALUES //
+    /* READ IN VALUES */
     macros = cJSON_GetObjectItemCaseSensitive(config_json, JO_MACROS);
     cJSON_ArrayForEach(macro, macros) {
-        // cJSON *macro_no = cJSON_GetObjectItemCaseSensitive(macro,
-        // JO_MACRO_NO);
-        cJSON *action = NULL;
 
-        int    i       = 0;
+        /* create new macro-pointer */
+        f8_macroP pm = calloc(1, sizeof(*pm));
+
+        /* Get the macro number from the JSON and set the offest */
+        cJSON *macro_no = cJSON_GetObjectItemCaseSensitive(macro, JO_MACRO_NO);
+        switch ((int)cJSON_GetNumberValue(macro_no)) {
+        case MACRO1:
+            return_macros[MACRO1 - 1] = pm;
+            pm->offset                = PROG1_OFFSET;
+            break;
+        case MACRO2:
+            return_macros[MACRO2 - 1] = pm;
+            pm->offset                = PROG2_OFFSET;
+            break;
+        case MACRO3:
+            return_macros[MACRO3 - 1] = pm;
+            pm->offset                = PROG3_OFFSET;
+            break;
+        case MACRO4:
+            return_macros[MACRO4 - 1] = pm;
+            pm->offset                = PROG4_OFFSET;
+            break;
+        case MACRO5:
+            return_macros[MACRO5 - 1] = pm;
+            pm->offset                = PROG5_OFFSET;
+            break;
+        case MACRO6:
+            return_macros[MACRO6 - 1] = pm;
+            pm->offset                = PROG6_OFFSET;
+            break;
+        case MACRO7:
+            return_macros[MACRO7 - 1] = pm;
+            pm->offset                = PROG7_OFFSET;
+            break;
+        case MACRO8:
+            return_macros[MACRO8 - 1] = pm;
+            pm->offset                = PROG8_OFFSET;
+            break;
+        }
+
+        /* Move through all the actions in the current macro and set the values
+         */
+        cJSON *action  = NULL;
         cJSON *actions = cJSON_GetObjectItemCaseSensitive(macro, JO_ACTIONS);
+
+        int    i = 0;
         cJSON_ArrayForEach(action, actions) {
-            cJSON *mod_keys =
+
+            f8_macro_actionP pma = calloc(1, sizeof(*pma));
+
+            cJSON           *mod_keys =
                 cJSON_GetObjectItemCaseSensitive(action, JO_MOD_KEYS);
             // cJSON *delay = cJSON_GetObjectItemCaseSensitive(action,
             // JO_DELAY);
             cJSON *keys = cJSON_GetObjectItemCaseSensitive(action, JO_KEYS);
 
-            prog_actionP pa = calloc(1, sizeof(*pa));
-            pa->k_modifier =
+            printf(" >> %s\r\n",
+                   cJSON_GetStringValue(cJSON_GetArrayItem(keys, 0)));
+            printf(" >> %s\r\n",
+                   cJSON_GetStringValue(cJSON_GetArrayItem(keys, 1)));
+            printf(" >> %s\r\n",
+                   cJSON_GetStringValue(cJSON_GetArrayItem(keys, 2)));
+            printf(" >> %s\r\n",
+                   cJSON_GetStringValue(cJSON_GetArrayItem(keys, 3)));
+            printf(" >> %s\r\n",
+                   cJSON_GetStringValue(cJSON_GetArrayItem(keys, 4)));
+            printf(" >> %s\r\n",
+                   cJSON_GetStringValue(cJSON_GetArrayItem(keys, 5)));
+
+            pma->modifier =
                 get_modkeycode_by_name(cJSON_GetStringValue(mod_keys));
-            pa->k_delay   = 0x00;
-            pa->k_action1 = get_keycode_by_name(
+            pma->delay   = 0x00; // TODO: Set acutal value from JSON
+            pma->action1 = get_keycode_by_name(
                 cJSON_GetStringValue(cJSON_GetArrayItem(keys, 0)));
-            pa->k_action2 = get_keycode_by_name(
+            pma->action2 = get_keycode_by_name(
                 cJSON_GetStringValue(cJSON_GetArrayItem(keys, 1)));
-            pa->k_action3 = get_keycode_by_name(
+            pma->action3 = get_keycode_by_name(
                 cJSON_GetStringValue(cJSON_GetArrayItem(keys, 2)));
-            pa->k_action4 = get_keycode_by_name(
+            pma->action4 = get_keycode_by_name(
                 cJSON_GetStringValue(cJSON_GetArrayItem(keys, 3)));
-            pa->k_action5 = get_keycode_by_name(
+            pma->action5 = get_keycode_by_name(
                 cJSON_GetStringValue(cJSON_GetArrayItem(keys, 4)));
-            pa->k_action6 = get_keycode_by_name(
+            pma->action6 = get_keycode_by_name(
                 cJSON_GetStringValue(cJSON_GetArrayItem(keys, 5)));
 
-            i++;
+            /* append the new action to the macro */
+            pm->actions[i++] = pma;
         }
     }
 
-    return NULL;
+    return return_macros;
 }
 
 char *
-read_in_config(char *conf_name) {
+read_in_config(const char *conf_name) {
 
     FILE *fp = fopen(conf_name, "r");
     if (!fp) {

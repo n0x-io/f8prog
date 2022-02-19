@@ -1,5 +1,7 @@
 #include "../include/keycodes_conv.h"
 
+#include <stdio.h>
+
 const keyCode keycodes[] = {
 
     KEYCODE(KEY_ErrorRollOver),
@@ -240,6 +242,7 @@ get_keycode_by_name(char *key_name) {
     for (int i = 0; i < (sizeof(keycodes) / sizeof(keycodes[0])); i++) {
         if (strcmp(keycodes[i].key_name, key_name) == 0) {
             keycode = keycodes[i].key_code;
+            printf(" >> Getting keycode for %s: 0x%02x\r\n", key_name, keycode);
             break;
         }
     }

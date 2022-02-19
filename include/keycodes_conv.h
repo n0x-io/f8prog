@@ -1,4 +1,5 @@
-#include "../include/keycodes.h"
+#include "../include/defines.h"
+
 #include <stdint.h>
 #include <string.h>
 
@@ -7,11 +8,11 @@
 
 typedef struct keyCode keyCode;
 struct keyCode {
-    uint8_t key_code;
+    uint8_t     key_code;
     const char *key_name;
 };
 
-#define KEYCODE(KC)                                                            \
+#define KEYCODE(KC) \
     { KC, #KC }
 
 uint8_t get_keycode_by_name(char *key_name);

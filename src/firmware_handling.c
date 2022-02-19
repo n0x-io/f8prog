@@ -58,37 +58,37 @@ set_key_value(char *firmware_buffer, int key, int value) {
 }
 
 void
-set_program(f_bffrP p_fb, key_progP kp) {
+set_program(f_bffrP p_fb, f8_macroP mp) {
     for (int i = 0; i < MAX_ACTION; i++) {
-
         // Check if an action for that position exists
-        if (kp->prog_actions[i]) {
-            /* calculate the offset for the action
-             * -> general prog_offset + current prog_action i times bytes per
-             * action
-             */
-            int actionpointer =
-                kp->prog_offset + (i * sizeof(*kp->prog_actions[0]));
+        if (mp) {
+            if (mp->actions[i]) {
+                /* calculate the offset for the action
+                 * -> general prog_offset + current prog_action i times bytes
+                 * per action
+                 */
+                int actionpointer = mp->offset + (i * sizeof(*mp->actions[0]));
 
-            /* set the modifiers */
-            memset(p_fb->buffer + actionpointer + 0,
-                   kp->prog_actions[i]->k_modifier, 1);
-            /* set timing delay */
-            memset(p_fb->buffer + actionpointer + 1,
-                   kp->prog_actions[i]->k_delay, 1);
-            /* set action 1-6 */
-            memset(p_fb->buffer + actionpointer + 2,
-                   kp->prog_actions[i]->k_action1, 1);
-            memset(p_fb->buffer + actionpointer + 3,
-                   kp->prog_actions[i]->k_action2, 1);
-            memset(p_fb->buffer + actionpointer + 4,
-                   kp->prog_actions[i]->k_action3, 1);
-            memset(p_fb->buffer + actionpointer + 5,
-                   kp->prog_actions[i]->k_action4, 1);
-            memset(p_fb->buffer + actionpointer + 6,
-                   kp->prog_actions[i]->k_action5, 1);
-            memset(p_fb->buffer + actionpointer + 7,
-                   kp->prog_actions[i]->k_action6, 1);
+                /* set the modifiers */
+                memset(p_fb->buffer + actionpointer + 0,
+                       mp->actions[i]->modifier, 1);
+                /* set timing delay */
+                memset(p_fb->buffer + actionpointer + 1, mp->actions[i]->delay,
+                       1);
+                /* set action 1-6 */
+                memset(p_fb->buffer + actionpointer + 2,
+                       mp->actions[i]->action1, 1);
+                memset(p_fb->buffer + actionpointer + 3,
+                       mp->actions[i]->action2, 1);
+                memset(p_fb->buffer + actionpointer + 4,
+                       mp->actions[i]->action3, 1);
+                memset(p_fb->buffer + actionpointer + 5,
+                       mp->actions[i]->action4, 1);
+                memset(p_fb->buffer + actionpointer + 6,
+                       mp->actions[i]->action5, 1);
+                memset(p_fb->buffer + actionpointer + 7,
+                       mp->actions[i]->action6, 1);
+            }
         }
     }
 }

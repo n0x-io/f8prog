@@ -5,6 +5,7 @@ f8prog
 build/
 firmware/
 .ccls-cache/
+*.bin
 
 # ---> C
 # Prerequisites

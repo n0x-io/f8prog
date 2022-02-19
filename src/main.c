@@ -1,3 +1,5 @@
+#include "../include/config_handling.h"
+#include "../include/defines.h"
 #include "../include/firmware_handling.h"
 
 #include <ctype.h>
@@ -11,10 +13,19 @@ char *updated_file_name(char *orig);
 int
 main(int argc, char *argv[]) {
     /* Read in the firmware file into a f_bffr_t struct */
-    f_bffrP p_fb = get_firmware_buffer(argv[1]);
+    f_bffrP    p_fb = get_firmware_buffer(argv[1]);
 
     /* Call testing method */
-    testing(p_fb);
+    // testing(p_fb);
+
+    f8_macroP *my_macros = get_f8_macros("config.json");
+    int        len       = sizeof(my_macros);
+
+    printf("Length of my_macros: %d\r\n", len);
+
+    for (int i = 0; i < len; i++) {
+        set_program(p_fb, my_macros[i]);
+    }
 
     write_firmware_buffer(updated_file_name(argv[1]), p_fb);
 
@@ -60,27 +71,27 @@ testing(f_bffrP p_fb) {
     }
     */
 
-    prog_actionP pa = calloc(1, sizeof(*pa));
-    pa->k_modifier  = 0x00;
-    pa->k_delay     = 0x00;
-    pa->k_action1   = 0x0B;
-    pa->k_action2   = 0x04;
-    pa->k_action3   = 0x0F;
-    pa->k_action4   = 0x0F;
-    pa->k_action5   = 0x12;
-    pa->k_action6   = 0x00;
+    f8_macro_actionP pma = calloc(1, sizeof(*pma));
+    pma->modifier        = 0x00;
+    pma->delay           = 0x00;
+    pma->action1         = 0x0B;
+    pma->action2         = 0x04;
+    pma->action3         = 0x0F;
+    pma->action4         = 0x0F;
+    pma->action5         = 0x12;
+    pma->action6         = 0x00;
 
-    key_progP kp         = calloc(1, sizeof(*kp));
-    kp->prog_offset      = PROG1_OFFSET;
-    kp->prog_actions[0]  = pa;
-    kp->prog_actions[1]  = pa;
-    kp->prog_actions[2]  = pa;
-    kp->prog_actions[3]  = pa;
-    kp->prog_actions[99] = pa;
+    f8_macroP pm    = calloc(1, sizeof(*pm));
+    pm->offset      = PROG1_OFFSET;
+    pm->actions[0]  = pma;
+    pm->actions[1]  = pma;
+    pm->actions[2]  = pma;
+    pm->actions[3]  = pma;
+    pm->actions[99] = pma;
     //*/
 
-    set_program(p_fb, kp);
+    set_program(p_fb, pm);
 
-    free(kp);
-    free(pa);
+    free(pm);
+    free(pma);
 }
