@@ -223,25 +223,18 @@ const keyCode keycodes[] = {
 };
 
 const keyCode modkeycodes[] = {
-    KEYCODE(MODKEY_LCTR),
-    KEYCODE(MODKEY_LSHI),
-    KEYCODE(MODKEY_LALT),
-    KEYCODE(MODKEY_LWIN),
-    KEYCODE(MODKEY_RCTR),
-    KEYCODE(MODKEY_RSHI),
-    KEYCODE(MODKEY_RALT),
-    KEYCODE(MODKEY_RWIN),
-    KEYCODE(MODKEY_RWIN_RSHI),
-    KEYCODE(MODKEY_RWIN_RCTR),
-    KEYCODE(MODKEY_RWIN_RALT),
-    KEYCODE(MODKEY_RWIN_RCTR_RSHI),
-    KEYCODE(MODKEY_RCTR_RALT),
-    KEYCODE(MODKEY_RCTR_RSHI),
-    KEYCODE(MODKEY_RALT_RSHI),
-    KEYCODE(MODKEY_RALT_RCTR_RSHI),
+    KEYCODE(MODKEY_LCTR),      KEYCODE(MODKEY_LSHI),
+    KEYCODE(MODKEY_LALT),      KEYCODE(MODKEY_LWIN),
+    KEYCODE(MODKEY_RCTR),      KEYCODE(MODKEY_RSHI),
+    KEYCODE(MODKEY_RALT),      KEYCODE(MODKEY_RWIN),
+    KEYCODE(MODKEY_RWIN_RSHI), KEYCODE(MODKEY_RWIN_RCTR),
+    KEYCODE(MODKEY_RWIN_RALT), KEYCODE(MODKEY_RWIN_RCTR_RSHI),
+    KEYCODE(MODKEY_RCTR_RALT), KEYCODE(MODKEY_RCTR_RSHI),
+    KEYCODE(MODKEY_RALT_RSHI), KEYCODE(MODKEY_RALT_RCTR_RSHI),
 };
 
-uint8_t get_keycode_by_name(char *key_name) {
+uint8_t
+get_keycode_by_name(char *key_name) {
     uint8_t keycode = -1;
 
     for (int i = 0; i < (sizeof(keycodes) / sizeof(keycodes[0])); i++) {
@@ -254,7 +247,8 @@ uint8_t get_keycode_by_name(char *key_name) {
     return keycode;
 }
 
-uint8_t get_modkeycode_by_name(char *modkey_name) {
+uint8_t
+get_modkeycode_by_name(char *modkey_name) {
     uint8_t keycode = -1;
 
     for (int i = 0; i < (sizeof(modkeycodes) / sizeof(modkeycodes[0])); i++) {

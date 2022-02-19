@@ -106,7 +106,6 @@ IndentWrappedFunctionNames: false
 InsertTrailingCommas: None
 KeepEmptyLinesAtTheStartOfBlocks: true
 LambdaBodyIndentation: Signature
-LanguageKind: Cpp
 MacroBlockBegin: ''
 MacroBlockEnd:   ''
 MaxEmptyLinesToKeep: 1

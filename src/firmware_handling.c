@@ -4,15 +4,16 @@
 #include <sys/stat.h>
 
 /* Just for debugging */
-#include <ctype.h>
-
 #include "../include/firmware_handling.h"
 
-f_bffrP get_firmware_buffer(char *filename) {
+#include <ctype.h>
+
+f_bffrP
+get_firmware_buffer(char *filename) {
 
     f_bffrP p_fb = malloc(sizeof(*p_fb));
 
-    FILE *firmware = fopen(filename, "rb");
+    FILE   *firmware = fopen(filename, "rb");
     if (!firmware) {
         perror("Error while reading in Firmware File.\r\nExiting.");
         exit(EXIT_FAILURE);
@@ -25,7 +26,7 @@ f_bffrP get_firmware_buffer(char *filename) {
     }
 
     /* set buffer size and read in firmware file into buffer*/
-    p_fb->size = sb.st_size;
+    p_fb->size   = sb.st_size;
     p_fb->buffer = malloc(p_fb->size);
     fread(p_fb->buffer, p_fb->size, 1, firmware);
 
@@ -37,7 +38,8 @@ f_bffrP get_firmware_buffer(char *filename) {
     return p_fb;
 }
 
-void write_firmware_buffer(char *filename, f_bffrP p_fb) {
+void
+write_firmware_buffer(char *filename, f_bffrP p_fb) {
 
     FILE *firmware_file = fopen(filename, "wb+");
     if (!firmware_file) {
@@ -50,11 +52,13 @@ void write_firmware_buffer(char *filename, f_bffrP p_fb) {
     fclose(firmware_file);
 }
 
-void set_key_value(char *firmware_buffer, int key, int value) {
+void
+set_key_value(char *firmware_buffer, int key, int value) {
     memset(firmware_buffer + key, value, 1);
 }
 
-void set_program(f_bffrP p_fb, key_progP kp) {
+void
+set_program(f_bffrP p_fb, key_progP kp) {
     for (int i = 0; i < MAX_ACTION; i++) {
 
         // Check if an action for that position exists
