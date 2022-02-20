@@ -1,9 +1,13 @@
 #include "../include/keycodes_conv.h"
 
+#include "../include/defines.h"
+
 #include <stdio.h>
+#include <string.h>
 
 const keyCode keycodes[] = {
 
+    KEYCODE(KEY_NONE),
     KEYCODE(KEY_ErrorRollOver),
     KEYCODE(KEY_POSTFail),
     KEYCODE(KEY_ErrorUndefined),
@@ -222,41 +226,34 @@ const keyCode keycodes[] = {
     KEYCODE(KEY_RightShift),
     KEYCODE(KEY_RightAlt),
     KEYCODE(KEY_RightGUI),
-};
 
-const keyCode modkeycodes[] = {
-    KEYCODE(MODKEY_LCTR),      KEYCODE(MODKEY_LSHI),
-    KEYCODE(MODKEY_LALT),      KEYCODE(MODKEY_LWIN),
-    KEYCODE(MODKEY_RCTR),      KEYCODE(MODKEY_RSHI),
-    KEYCODE(MODKEY_RALT),      KEYCODE(MODKEY_RWIN),
-    KEYCODE(MODKEY_RWIN_RSHI), KEYCODE(MODKEY_RWIN_RCTR),
-    KEYCODE(MODKEY_RWIN_RALT), KEYCODE(MODKEY_RWIN_RCTR_RSHI),
-    KEYCODE(MODKEY_RCTR_RALT), KEYCODE(MODKEY_RCTR_RSHI),
-    KEYCODE(MODKEY_RALT_RSHI), KEYCODE(MODKEY_RALT_RCTR_RSHI),
+    /* SPECIAL KEYCODES FOR THE MODIFIFER KEY */
+    KEYCODE(MODKEY_NONE),
+    KEYCODE(MODKEY_LCTR),
+    KEYCODE(MODKEY_LSHI),
+    KEYCODE(MODKEY_LALT),
+    KEYCODE(MODKEY_LWIN),
+    KEYCODE(MODKEY_RCTR),
+    KEYCODE(MODKEY_RSHI),
+    KEYCODE(MODKEY_RALT),
+    KEYCODE(MODKEY_RWIN),
+    KEYCODE(MODKEY_RWIN_RSHI),
+    KEYCODE(MODKEY_RWIN_RCTR),
+    KEYCODE(MODKEY_RWIN_RALT),
+    KEYCODE(MODKEY_RWIN_RCTR_RSHI),
+    KEYCODE(MODKEY_RCTR_RALT),
+    KEYCODE(MODKEY_RCTR_RSHI),
+    KEYCODE(MODKEY_RALT_RSHI),
+    KEYCODE(MODKEY_RALT_RCTR_RSHI),
 };
 
 uint8_t
 get_keycode_by_name(char *key_name) {
-    uint8_t keycode = -1;
+    uint8_t keycode = 0x00;
 
     for (int i = 0; i < (sizeof(keycodes) / sizeof(keycodes[0])); i++) {
         if (strcmp(keycodes[i].key_name, key_name) == 0) {
             keycode = keycodes[i].key_code;
-            printf(" >> Getting keycode for %s: 0x%02x\r\n", key_name, keycode);
-            break;
-        }
-    }
-
-    return keycode;
-}
-
-uint8_t
-get_modkeycode_by_name(char *modkey_name) {
-    uint8_t keycode = -1;
-
-    for (int i = 0; i < (sizeof(modkeycodes) / sizeof(modkeycodes[0])); i++) {
-        if (strcmp(modkeycodes[i].key_name, modkey_name) == 0) {
-            keycode = modkeycodes[i].key_code;
             break;
         }
     }

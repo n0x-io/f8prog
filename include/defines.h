@@ -7,6 +7,7 @@
 #define DEFINES_H_
 
 /* THESE ARE THE AVALIABLE KEYS FOR THE "MOD_KEYS" PARAMETER */
+#define MODKEY_NONE 0x00
 #define MODKEY_LCTR 0x01
 #define MODKEY_LSHI 0x02
 #define MODKEY_LALT 0x03
@@ -25,6 +26,7 @@
 #define MODKEY_RALT_RCTR_RSHI 0x10
 
 /* THESE ARE THE AVAIRABLE KEYS FOR THE "KEYS" PARAMETER */
+#define KEY_NONE 0x00
 #define KEY_ErrorRollOver 0x01
 #define KEY_POSTFail 0x02
 #define KEY_ErrorUndefined 0x03

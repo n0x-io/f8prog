@@ -11,23 +11,31 @@ void  testing(f_bffrP p_fb);
 char *updated_file_name(char *orig);
 
 int
-main(int argc, char *argv[]) {
+main(int argc, char *argv
+
+                   []) {
     /* Read in the firmware file into a f_bffr_t struct */
     f_bffrP    p_fb = get_firmware_buffer(argv[1]);
 
     /* Call testing method */
+
     // testing(p_fb);
 
-    f8_macroP *my_macros = get_f8_macros("config.json");
+    f8_macroP *my_macros = get_f8_macros(argv[2]);
     int        len       = sizeof(my_macros);
 
     printf("Length of my_macros: %d\r\n", len);
 
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len;
+
+         i++) {
         set_program(p_fb, my_macros[i]);
+        free(my_macros[i]);
     }
 
-    write_firmware_buffer(updated_file_name(argv[1]), p_fb);
+    char *new_name = updated_file_name(argv[1]);
+    write_firmware_buffer(new_name, p_fb);
+    free(new_name);
 
     free(p_fb->buffer);
     free(p_fb);

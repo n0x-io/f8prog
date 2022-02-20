@@ -1,7 +1,4 @@
-#include "../include/defines.h"
-
 #include <stdint.h>
-#include <string.h>
 
 #ifndef KEYCODE_CONV_H_
 #define KEYCODE_CONV_H_
@@ -16,6 +13,5 @@ struct keyCode {
     { KC, #KC }
 
 uint8_t get_keycode_by_name(char *key_name);
-uint8_t get_modkeycode_by_name(char *modkey_name);
 
 #endif /* KEYCODE_CONV_H_ */
