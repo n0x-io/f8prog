@@ -5,23 +5,39 @@
             "actions": [
                 {
                     "mod_keys": "",
-                    "delay":    0.0,
-                    "keys":  ["a", "b", "c", "d", "e", "f"]
+                    "delay": 0.0,
+                    "keys": [
+                        "KEY_a_A",
+                        "KEY_b_B",
+                        "KEY_c_C",
+                        "KEY_d_D",
+                        "KEY_e_E",
+                        "KEY_f_F"
+                    ]
                 },
                 {
                     "mod_keys": "",
-                    "delay":    0.0,
-                    "keys":  ["1", "2", "3", "4", "5", "6"]
+                    "delay": 0.0,
+                    "keys": [
+                        "KEY_1_Exclamantion",
+                        "KEY_2_At",
+                        "KEY_3_Pound",
+                        "KEY_4_Dollar",
+                        "KEY_5_Percent",
+                        "KEY_6_Caret"
+                    ]
                 },
                 {
                     "mod_keys": "",
-                    "delay":    0.0,
-                    "keys":  ["!", "\"", "§", "$", "%", "&"]
-                },
-                {
-                    "mod_keys": "",
-                    "delay":    0.0,
-                    "keys":  ["Z", "Y", "X", "W", "V", "U"]
+                    "delay": 0.0,
+                    "keys": [
+                        "KEY_z_Z",
+                        "KEY_y_Y",
+                        "KEY_x_X",
+                        "KEY_w_W",
+                        "KEY_v_V",
+                        "KEY_u_U"
+                    ]
                 }
             ]
         },
@@ -30,13 +46,27 @@
             "actions": [
                 {
                     "mod_keys": "",
-                    "delay":    0.0,
-                    "keys":  ["a"]
+                    "delay": 0.0,
+                    "keys": [
+                        "KEY_1_Exclamantion",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
                 },
                 {
                     "mod_keys": "",
-                    "delay":    0.0,
-                    "keys":  ["1"]
+                    "delay": 0.0,
+                    "keys": [
+                        "KEY_a_A",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
                 }
             ]
         }
