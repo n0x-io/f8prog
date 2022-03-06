@@ -11,9 +11,8 @@ void  testing(f_bffrP p_fb);
 char *updated_file_name(char *orig);
 
 int
-main(int argc, char *argv
+main(int argc, char *argv[]) {
 
-                   []) {
     /* Read in the firmware file into a f_bffr_t struct */
     f_bffrP    p_fb = get_firmware_buffer(argv[1]);
 
@@ -26,9 +25,7 @@ main(int argc, char *argv
 
     printf("Length of my_macros: %d\r\n", len);
 
-    for (int i = 0; i < len;
-
-         i++) {
+    for (int i = 0; i < len; i++) {
         set_program(p_fb, my_macros[i]);
         free(my_macros[i]);
     }
